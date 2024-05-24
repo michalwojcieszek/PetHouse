@@ -45,6 +45,7 @@ const Modal = ({
 
   const handleSubmit = useCallback(() => {
     if (disabled) return;
+    console.log("submit");
     onSubmit();
   }, [disabled, onSubmit]);
 
@@ -97,6 +98,7 @@ const Modal = ({
                     onClick={handleSubmit}
                   />
                 </div>
+                {footer}
               </div>
             </div>
           </div>

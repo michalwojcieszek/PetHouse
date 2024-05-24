@@ -10,9 +10,16 @@ type ButtonProps = {
   icon?: IconType;
 } & ComponentPropsWithoutRef<"button">;
 
-const Button = ({ label, outline, small, icon: Icon }: ButtonProps) => {
+const Button = ({
+  label,
+  outline,
+  small,
+  icon: Icon,
+  onClick,
+}: ButtonProps) => {
   return (
     <button
+      onClick={onClick}
       className={`relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full 
       ${outline ? "bg-white" : "bg-theme-color"}
       ${outline ? "border-black" : "border-theme-color"}

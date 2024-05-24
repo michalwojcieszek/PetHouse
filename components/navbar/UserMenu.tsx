@@ -5,9 +5,17 @@ import Avatar from "../Avatar";
 import { useState } from "react";
 import MenuItem from "./MenuItem";
 import useRegisterModal from "@/hooks/useRegisterModal";
+import useLoginModal from "@/hooks/useLoginModal";
+import { signOut } from "next-auth/react";
+import { SafeUser } from "@/app/types";
 
-const UserMenu = () => {
+type UserMenuProps = {
+  currentUser?: SafeUser | null;
+};
+
+const UserMenu = ({ currentUser }: UserMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
 
   return (
@@ -22,16 +30,28 @@ const UserMenu = () => {
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
-            <Avatar />
+            <Avatar src={currentUser?.image} />
           </div>
         </div>
       </div>
       {isOpen && (
         <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm ">
-          <>
-            <MenuItem onClick={() => {}} label="Login" />
-            <MenuItem onClick={registerModal.onOpen} label="Sign up" />
-          </>
+          {currentUser ? (
+            <>
+              <MenuItem onClick={() => {}} label="My trips" />
+              <MenuItem onClick={() => {}} label="My favourites" />
+              <MenuItem onClick={() => {}} label="My reservations" />
+              <MenuItem onClick={() => {}} label="My properties" />
+              <MenuItem onClick={() => {}} label="PetHouse my house" />
+              <hr />
+              <MenuItem onClick={() => signOut()} label="Logout" />
+            </>
+          ) : (
+            <>
+              <MenuItem onClick={loginModal.onOpen} label="Login" />
+              <MenuItem onClick={registerModal.onOpen} label="Sign up" />
+            </>
+          )}
         </div>
       )}
     </div>
