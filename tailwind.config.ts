@@ -15,6 +15,7 @@ const config: Config = {
       },
       colors: {
         "theme-color": "#2f9e44",
+        "secondary-color": "#8ce99a",
       },
     },
   },

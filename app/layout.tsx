@@ -7,6 +7,7 @@ import RegisterModal from "@/components/modals/RegisterModal";
 import ToasterProvider from "@/providers/ToasterProvider";
 import LoginModal from "@/components/modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
+import RentModal from "@/components/modals/RentModal";
 
 export const metadata: Metadata = {
   title: "PetHouse",
@@ -29,6 +30,7 @@ export default async function RootLayout({
           <Navbar currentUser={currentUser} />
           <LoginModal />
           <RegisterModal />
+          <RentModal />
         </ClientOnly>
         {children}
       </body>
