@@ -40,6 +40,7 @@ const ListingCard = ({
       if (disabled) return;
 
       onAction?.(actionId);
+      console.log("cancelled");
     },
     [onAction, actionId, disabled]
   );
